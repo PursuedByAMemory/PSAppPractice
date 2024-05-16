@@ -9,80 +9,108 @@ class LibraryScreen extends StatefulWidget {
   }
 }
 
-enum LibOptions { installed, purchased }
+enum LibOptions { installed, purchased}
 
 class _LibraryScreen extends State<LibraryScreen> {
   LibOptions libView = LibOptions.installed;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 14, top: 6, right: 10, bottom: 5),
-              child: SegmentedButton<LibOptions>(
-                segments: const <ButtonSegment<LibOptions>>[
-                  ButtonSegment<LibOptions>(
-                    value: LibOptions.installed,
-                    label: Text('Installed'),
-                    icon: Icon(Icons.download_for_offline_outlined),
-                  ),
-                  ButtonSegment<LibOptions>(
-                    value: LibOptions.purchased,
-                    label: Text('Purchased'),
-                    icon: Icon(Icons.account_balance_wallet_outlined),
-                  ),
-                ],
-                selected: <LibOptions>{libView},
-                onSelectionChanged: (Set<LibOptions> newSelection) {
-                  setState(() {
-                    libView = newSelection.first;
-                  });
-                },
-              ),
-            ),
-            const Divider(
-              indent: 10,
-              endIndent: 10,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 4.0, right: 4.0),
-              child: GridView.builder(
-                itemCount: 8,
-                shrinkWrap: true, 
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 3.0,
-                  crossAxisSpacing: 3.0,
-                ),
-                itemBuilder: (context, index) {
-                  return Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Column(
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(14.0),
-                          child: Image.asset('assets/prey.jpg'),
+    return 
+     DefaultTabController(
+      initialIndex: 0,
+      length: 2,
+       child: Scaffold(
+        appBar: AppBar(
+        flexibleSpace: const Column(
+            children: [
+              Expanded(
+                child: TabBar(
+                      tabs: <Widget>[
+                        Tab(
+                          //text: 'Installed',
+                          icon: Icon(Icons.download_for_offline_outlined),
                         ),
-                        const ListTile(
-                          title: Text('PREY'),
-                          subtitle: Text('Know Thy Self'),
+                        Tab(
+                          //text: 'Purchased',
+                          icon: Icon(Icons.storefront_sharp),
                         ),
                       ],
                     ),
-                  );
-                },
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
+        body: TabBarView(children: <Widget>[
+          SingleChildScrollView(
+          child: 
+              Padding(
+                padding: const EdgeInsets.only(left: 4.0, right: 4.0, top: 4.0, bottom: 4.0),
+                child: GridView.builder(
+                  itemCount: 8,
+                  shrinkWrap: true, 
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: .73,
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 3.0,
+                    crossAxisSpacing: 3.0,
+                  ),
+                  itemBuilder: (context, index) {
+                    return Card.outlined(
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(14.0),
+                            child: Image.asset('assets/bendslow.jpg'),
+                          ),
+                          const ListTile(
+                            title: Text('Bends'),
+                            subtitle: Text('Radiohead'),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+          ),
+          SingleChildScrollView(
+          child: 
+              Padding(
+                padding: const EdgeInsets.only(left: 4.0, right: 4.0, top: 4.0, bottom: 4.0),
+                child: GridView.builder(
+                  itemCount: 8,
+                  shrinkWrap: true, 
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: .73,
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 3.0,
+                    crossAxisSpacing: 3.0,
+                  ),
+                  itemBuilder: (context, index) {
+                    return Card.outlined(
+                      child: Column(
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(14.0),
+                            child: Image.asset('assets/htttlow.jpg'),
+                          ),
+                          const ListTile(
+                            title: Text('Hail To The Thief'),
+                            subtitle: Text('Radiohead'),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
+          ),
+        ],
+        )
+        ),
+     );
   }
 }
