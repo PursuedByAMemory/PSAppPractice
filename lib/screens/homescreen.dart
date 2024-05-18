@@ -17,7 +17,13 @@ class _HomeScreen extends State<HomeScreen>{
             Padding(
               padding: const EdgeInsets.only(left: 4, right: 4),
               child: Card.outlined(
-                child: Column(
+                clipBehavior: Clip.hardEdge,
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap:(){
+                    debugPrint('Card tapped');
+                  },
+                  child: Column(
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(14.0),
@@ -31,9 +37,16 @@ class _HomeScreen extends State<HomeScreen>{
                 ),
               ),
             ),
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 4, right: 4),
               child: Card.outlined(
+                clipBehavior: Clip.hardEdge,
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap:(){
+                    debugPrint('Card tapped');
+                  },
                 child: Column(
                   children: [
                     ClipRRect(
@@ -48,9 +61,16 @@ class _HomeScreen extends State<HomeScreen>{
                 ),
               ),
             ),
+            ),
             Padding(
               padding: const EdgeInsets.only(left: 4, right: 4),
               child: Card.outlined(
+                clipBehavior: Clip.hardEdge,
+                child: InkWell(
+                  splashColor: Colors.blue.withAlpha(30),
+                  onTap:(){
+                    debugPrint('Card tapped');
+                  },
                 child: Column(
                   children: [
                     ClipRRect(
@@ -65,6 +85,7 @@ class _HomeScreen extends State<HomeScreen>{
                   ],
                 ),
               ),
+            ),
             ),
           ],
         ),
